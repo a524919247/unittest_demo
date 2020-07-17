@@ -1,10 +1,10 @@
 from unittest_demo.unittest_demo_one.config.config import *
 import json
 
-
+# 封装的日志打印内容
 def log_case_info(case_name, url, data, expect_res, res_text):
     if isinstance(data, dict):
-        data = json.dumps(data, ensure_ascii=False)  # 如果data是字典格式，转化为字符串
+        data = json.dumps(data, ensure_ascii=False)  # 判断如果data是字典格式，转化为字符串
     logging.info("测试用例：{}".format(case_name))
     logging.info("url：{}".format(url))
     logging.info("请求参数：{}".format(data))
