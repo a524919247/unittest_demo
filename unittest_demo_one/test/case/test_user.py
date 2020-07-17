@@ -1,9 +1,8 @@
 import unittest
 import requests
-from unittest_demo_one.lib.read_excal import *
 import json
-import sys
-sys.path.append("../..")  # 提升2级到项目根目录下
+from unittest_demo.unittest_demo_one.test.basecase import BaseCase
+
 
 
 
@@ -13,11 +12,11 @@ sys.path.append("../..")  # 提升2级到项目根目录下
 # def tearDownModule():
 #     print('用户相关用例执行完毕')
 
-class TestUserLogin(unittest.TestCase):
+class TestUserLogin(BaseCase):
 
-    @classmethod
-    def setUpClass(cls):  # 整个测试类只执行一次
-        cls.data_list = excal_list("test_user_data.xlsx", "TestUserLogin")
+    # @classmethod
+    # def setUpClass(cls):  # 整个测试类只执行一次
+    #     cls.data_list = excal_list("test_user_data.xlsx", "TestUserLogin")
 
     # @classmethod
     # def tearDownClass(cls):
@@ -31,41 +30,22 @@ class TestUserLogin(unittest.TestCase):
 
 
     def test_type_error(self):
-        case_data = get_test_data(self.data_list,"test_type_error")
-        if not case_data:
-            print("用例数据不存在")
-        url = case_data['url']
-        data = case_data["data"]
-        expect_res = case_data['expect_res']
-
-        res = requests.post(url = url,data = data)
-        print(res.text)
-        self.assertEqual(res.text, expect_res)
+        """参数类型错误"""
+        case_date = self.get_case_data("test_type_error")
+        self.send_request(case_date)
 
     def test_user_nil(self):
-        case_data = get_test_data(self.data_list, "test_user_nil")
-        if not case_data:
-            print("用例数据不存在")
-        url = case_data['url']
-        data = case_data["data"]
-        expect_res = case_data['expect_res']
-        print(expect_res)
-        headers = {"Content-Type": "application/json"}
-        res = requests.post(url=url, data=json.dumps(data),headers=headers)
-        res.encoding = 'unicode_escape'
-        print(res.text)
-        self.assertEqual(res.text, expect_res)
+        """登录条件缺失"""
+        case_date = self.get_case_data("test_user_nil")
+        self.send_request(case_date)
 
-    # def test_login_success(self):
-    #     data = {"name":"张三","password":"123456"}
-    #     headers = {"Content-Type": "application/json"}
-    #     res = requests.post(url=self.url, data=json.dumps(data),headers=headers)
-    #     res.encoding = 'unicode_escape'
-    #     self.assertIn('登陆成功', res.text)
-    #
-    # def test_login_fail(self):
-    #     data = {"name":"张三","password":"1234dsda56"}
-    #     headers = {"Content-Type": "application/json"}
-    #     res = requests.post(url=self.url, data=json.dumps(data),headers=headers)
-    #     res.encoding = 'unicode_escape'
-    #     self.assertIn('姓名或密码错误', res.text)
+
+    def test_login_success(self):
+        """登陆成功"""
+        case_date = self.get_case_data("test_login_success")
+        self.send_request(case_date)
+
+    def test_login_fail(self):
+        """姓名或密码错误"""
+        case_date = self.get_case_data("test_login_fail")
+        self.send_request(case_date)

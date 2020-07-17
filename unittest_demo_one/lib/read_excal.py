@@ -17,8 +17,8 @@ def get_test_data(data_list,case_name):
         if case_name == case_data['case_name']:
             return case_data
 
-if __name__ == '__main__':   # 测试一下自己的代码
-    data_list = excal_list("/Users/bytedance/Desktop/test/unittest_demo_one/data/test_user_data.xlsx", "TestUserLogin")  # 读取excel，TestUserLogin工作簿的所有数据
-    case_data = get_test_data(data_list, 'test_type_error')  # 查找用例'test_user_login_normal'的数据
-    print(case_data)
+# if __name__ == '__main__':   # 测试一下自己的代码
+#     data_list = excal_list("/Users/bytedance/Desktop/test/unittest_demo/unittest_demo_one/data/test_user_data.xlsx", "TestUserLogin")  # 读取excel，TestUserLogin工作簿的所有数据
+#     case_data = get_test_data(data_list, 'test_type_error')  # 查找用例'test_user_login_normal'的数据
+#     print(case_data)
 
