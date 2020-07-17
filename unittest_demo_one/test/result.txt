@@ -1,0 +1,9 @@
+test_login_fail (case.test_user.TestUserLogin) ... ok
+test_login_succ (case.test_user.TestUserLogin) ... ok
+test_type_error (case.test_user.TestUserLogin) ... ok
+test_user_nil (case.test_user.TestUserLogin) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.011s
+
+OK
